@@ -1,4 +1,4 @@
-@extends('template')
+@extends('layouts.template')
 
 @section('content')
 <style>
@@ -13,10 +13,6 @@
 .card {
     background-color: #343A40;
     color: #ffff;
-}
-
-.fixed-top {
-    z-index: -1;
 }
 
 </style>

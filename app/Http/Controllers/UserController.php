@@ -48,7 +48,7 @@ class UserController extends Controller
             //$getGroup = Usersgroup::where('user_id',Auth::id())->join('groups', 'usersgroups.group_id', '=', 'groups.id')->value('groupName');
 
             // VERSION OPTI
-            $user = Auth::user()->with('usersgroups', 'usersgroups.groups')->first(); 
+            $user = Auth::user()->with('usersgroups', 'usersgroups.groups')->where('id', Auth::id())->first(); 
             $getGroup = $user->usersgroups->groups->groupName;
             
             // ON RETURN LA VIEW AVEC VARIABLE
@@ -56,6 +56,50 @@ class UserController extends Controller
         }else{
             // ON RETURN LA VIEW SANS VARIABLE
             return view('accueil');
+        }         
+    }
+
+    public function getgroupfeature(){
+        // ON VERIFIE SI LE USER EST CONNECTÉ
+        if (! empty( Auth::User()) ) 
+        {
+            // VERSION NON OPTI
+            //$getGroup =  DB::table('usersgroup')->where('userID',Auth::id())->join('groups', 'usersgroup.groupID', '=', 'groups.id')->value('groupName');
+
+            // VERSION OPTI A MOITIER
+            //$getGroup = Usersgroup::where('user_id',Auth::id())->join('groups', 'usersgroups.group_id', '=', 'groups.id')->value('groupName');
+
+            // VERSION OPTI
+            $user = Auth::user()->with('usersgroups', 'usersgroups.groups')->where('id', Auth::id())->first(); 
+            $getGroup = $user->usersgroups->groups->groupName;
+            
+            // ON RETURN LA VIEW AVEC VARIABLE
+            return view('features',['group' => $getGroup]);
+        }else{
+            // ON RETURN LA VIEW SANS VARIABLE
+            return view('features');
+        }         
+    }
+
+    public function getgrouppricing(){
+        // ON VERIFIE SI LE USER EST CONNECTÉ
+        if (! empty( Auth::User()) ) 
+        {
+            // VERSION NON OPTI
+            //$getGroup =  DB::table('usersgroup')->where('userID',Auth::id())->join('groups', 'usersgroup.groupID', '=', 'groups.id')->value('groupName');
+
+            // VERSION OPTI A MOITIER
+            //$getGroup = Usersgroup::where('user_id',Auth::id())->join('groups', 'usersgroups.group_id', '=', 'groups.id')->value('groupName');
+
+            // VERSION OPTI
+            $user = Auth::user()->with('usersgroups', 'usersgroups.groups')->where('id', Auth::id())->first(); 
+            $getGroup = $user->usersgroups->groups->groupName;
+            
+            // ON RETURN LA VIEW AVEC VARIABLE
+            return view('pricing',['group' => $getGroup]);
+        }else{
+            // ON RETURN LA VIEW SANS VARIABLE
+            return view('pricing');
         }         
     }
 }

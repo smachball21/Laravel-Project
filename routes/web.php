@@ -26,6 +26,6 @@ Route::get('panel/', function (){
 });
 
 
-Route::get('features/', [UserController::class, 'getgroup']);
+Route::get('features/', [UserController::class, 'getgroupfeature']);
 
-Route::get('pricing/', [UserController::class, 'getgroup']);
+Route::get('pricing/', [UserController::class, 'getgrouppricing']);
