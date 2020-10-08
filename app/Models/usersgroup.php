@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Group;
 
 
 class Usersgroup extends Model
@@ -13,6 +14,6 @@ class Usersgroup extends Model
 
     public function groups()
     {
-     return $this->hasOne(Group::class);
+     return $this->hasOne(Group::class,'id');
     }
 }

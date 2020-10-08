@@ -6,7 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Usersgroup;
+use App\Models\Group;
+
+
 
 class User extends Authenticatable
 {
