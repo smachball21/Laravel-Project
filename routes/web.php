@@ -18,7 +18,7 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::get('/',[UserController::class, 'getgroup']);
+Route::get('/',[UserController::class, 'getgroupandaccueil']);
 
 
 Route::get('panel/', function (){
@@ -29,4 +29,3 @@ Route::get('panel/', function (){
 Route::get('features/', [UserController::class, 'getgroup']);
 
 Route::get('pricing/', [UserController::class, 'getgroup']);
-

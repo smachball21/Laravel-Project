@@ -5,3 +5,21 @@
 html,body {
     background-color: rgb(20,20,20);
 }
+
+.vertical-center {
+    min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 100vh; /* These two lines are counted as one :-)       */
+  
+    display: flex;
+    align-items: center;
+}  
+  .card {
+      background-color: #343A40;
+      color: #ffff;
+  }
+  
+  .fixed-top {
+      z-index: 998;
+  }
+
+  

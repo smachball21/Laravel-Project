@@ -15,7 +15,7 @@
     </head>
 
     <body>
-        <header>
+        <header style="position:fixed; width:100% ;z-index: 999;">
             <!-- Image and text -->
             <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
                 <a class="navbar-brand" href="#">
@@ -93,5 +93,10 @@
                 @endguest
             </nav> 
         </header>    
+
+        
+        <main class="py-4">
+            @yield('content')
+        </main>
     </body>
 </html>
