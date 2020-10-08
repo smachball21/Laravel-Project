@@ -13,9 +13,9 @@ class AddForeignKeysToUsersgroupTable extends Migration
      */
     public function up()
     {
-        Schema::table('usersgroup', function (Blueprint $table) {
-            $table->foreign('groupID', 'groupe')->references('id')->on('groups')->onUpdate('RESTRICT')->onDelete('RESTRICT');
-            $table->foreign('userID', 'username')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+        Schema::table('usersgroups', function (Blueprint $table) {
+            $table->foreign('group_id', 'groupe')->references('id')->on('groups')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('user_id', 'username')->references('id')->on('users')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -26,7 +26,7 @@ class AddForeignKeysToUsersgroupTable extends Migration
      */
     public function down()
     {
-        Schema::table('usersgroup', function (Blueprint $table) {
+        Schema::table('usersgroups', function (Blueprint $table) {
             $table->dropForeign('groupe');
             $table->dropForeign('username');
         });

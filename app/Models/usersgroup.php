@@ -4,10 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class usersgroup extends Model
+
+class Usersgroup extends Model
 {
-    public function booking()
+    protected $table = 'usersgroups';
+    protected $primaryKey = 'id';
+    public $incrementing = true;
+
+    public function groups()
     {
-        return $this->belongsTo(usersgroup::class);
+     return $this->hasOne(Group::class);
     }
 }

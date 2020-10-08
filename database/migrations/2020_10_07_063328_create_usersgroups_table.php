@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersgroupTable extends Migration
+class CreateUsersgroupsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class CreateUsersgroupTable extends Migration
     public function up()
     {
         Schema::create('usersgroups', function (Blueprint $table) {
-            $table->integer('id')->primary();
-            $table->unsignedBigInteger('userID')->index('username');
-            $table->integer('groupID')->nullable()->default(1)->index('groupe');
+            $table->id();
+            $table->unsignedBigInteger('user_id')->index('username');
+            $table->unsignedBigInteger('group_id')->default(1)->index('groupe');
 
         });
     }

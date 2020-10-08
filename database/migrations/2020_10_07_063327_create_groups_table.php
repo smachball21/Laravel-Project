@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Group;
 
 class CreateGroupsTable extends Migration
 {
@@ -14,9 +15,18 @@ class CreateGroupsTable extends Migration
     public function up()
     {
         Schema::create('groups', function (Blueprint $table) {
-            $table->integer('id', true);
+            $table->id();
             $table->string('groupName');
         });
+
+        Group::insert([
+            ['id' => NULL, 'groupName' => 'User'],
+            ['id' => NULL, 'groupName' => 'Moderator'],
+            ['id' => NULL, 'groupName' => 'Administrator'],
+            ['id' => NULL, 'groupName' => 'SuperAdministrator']           
+        ]);
+
+
     }
 
     /**

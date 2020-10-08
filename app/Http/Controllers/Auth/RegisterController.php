@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Usersgroup;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -75,11 +76,11 @@ class RegisterController extends Controller
         ]);
 
         $user = User::orderBy('id', 'desc')->first(); 
-        DB::table('usersgroup')->insert(
+        Usersgroup::insert(
             [
                 'id' => NULL,
-                'userID' => $user->id,
-                'groupID' => 1
+                'user_id' => $user->id,
+                'group_id' => 1
             ]
         );
         return $createuser;
