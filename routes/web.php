@@ -25,5 +25,8 @@ Route::get('panel/', function (){
     return view('panel');
 });
 
-Route::get('/test',[UserController::class, 'getgroup']);
+
+Route::get('features/', [UserController::class, 'getgroup']);
+
+Route::get('pricing/', [UserController::class, 'getgroup']);
 

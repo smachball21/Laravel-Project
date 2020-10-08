@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 06 oct. 2020 à 16:07
+-- Généré le : jeu. 08 oct. 2020 à 15:40
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
@@ -44,9 +44,9 @@ CREATE TABLE `failed_jobs` (
 --
 
 CREATE TABLE `groups` (
-  `id` int(11) NOT NULL,
-  `groupName` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `groupName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Déchargement des données de la table `groups`
@@ -55,8 +55,8 @@ CREATE TABLE `groups` (
 INSERT INTO `groups` (`id`, `groupName`) VALUES
 (1, 'User'),
 (2, 'Moderator'),
-(3, 'Admin'),
-(6, 'Owner');
+(3, 'Administrator'),
+(4, 'SuperAdministrator');
 
 -- --------------------------------------------------------
 
@@ -77,7 +77,10 @@ CREATE TABLE `migrations` (
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1);
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2020_10_07_063327_create_groups_table', 1),
+(5, '2020_10_07_063328_create_usersgroups_table', 1),
+(6, '2020_10_07_063329_add_foreign_keys_to_usersgroup_table', 1);
 
 -- --------------------------------------------------------
 
@@ -112,27 +115,21 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(7, 'smachball', 'n.hautevelle@hyper-volume.com', '2020-10-06 12:06:06', '$2y$10$S2ASt3dCx7dSpHt/xfV8fuRg6TKBLuVD7HslIa7VRAYRk9IvIAroO', '23ZMeFAFIn6VVd3UhCf3JRwEr8BdpSYkfRzQ161nJS0QDvgKYk6DSiJuS7Vq', '2020-10-06 09:57:17', '2020-10-06 09:57:17');
-
 -- --------------------------------------------------------
 
 --
--- Structure de la table `usersgroup`
+-- Structure de la table `usersgroups`
 --
 
-CREATE TABLE `usersgroup` (
-  `id` int(11) NOT NULL,
-  `userID` bigint(20) UNSIGNED NOT NULL,
-  `groupID` int(11) DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE `usersgroups` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `group_id` bigint(20) UNSIGNED NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
--- Déchargement des données de la table `usersgroup`
+-- Déchargement des données de la table `usersgroups`
 --
-
-INSERT INTO `usersgroup` (`id`, `userID`, `groupID`) VALUES
-(1, 7, 1);
 
 --
 -- Index pour les tables déchargées
@@ -171,12 +168,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
--- Index pour la table `usersgroup`
+-- Index pour la table `usersgroups`
 --
-ALTER TABLE `usersgroup`
+ALTER TABLE `usersgroups`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `groupe` (`groupID`),
-  ADD KEY `username` (`userID`);
+  ADD KEY `username` (`user_id`),
+  ADD KEY `groupe` (`group_id`);
 
 --
 -- AUTO_INCREMENT pour les tables déchargées
@@ -192,36 +189,36 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT pour la table `groups`
 --
 ALTER TABLE `groups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT pour la table `usersgroup`
+-- AUTO_INCREMENT pour la table `usersgroups`
 --
-ALTER TABLE `usersgroup`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `usersgroups`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `usersgroup`
+-- Contraintes pour la table `usersgroups`
 --
-ALTER TABLE `usersgroup`
-  ADD CONSTRAINT `groupe` FOREIGN KEY (`groupID`) REFERENCES `groups` (`id`),
-  ADD CONSTRAINT `username` FOREIGN KEY (`userID`) REFERENCES `users` (`id`);
+ALTER TABLE `usersgroups`
+  ADD CONSTRAINT `groupe` FOREIGN KEY (`group_id`) REFERENCES `groups` (`id`),
+  ADD CONSTRAINT `username` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
