@@ -24,3 +24,6 @@ Route::get('/',[UserController::class, 'getgroup']);
 Route::get('panel/', function (){
     return view('panel');
 });
+
+Route::get('/test',[UserController::class, 'getgroup']);
+

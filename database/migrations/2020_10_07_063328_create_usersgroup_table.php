@@ -13,10 +13,11 @@ class CreateUsersgroupTable extends Migration
      */
     public function up()
     {
-        Schema::create('usersgroup', function (Blueprint $table) {
+        Schema::create('usersgroups', function (Blueprint $table) {
             $table->integer('id')->primary();
             $table->unsignedBigInteger('userID')->index('username');
             $table->integer('groupID')->nullable()->default(1)->index('groupe');
+
         });
     }
 
@@ -27,6 +28,6 @@ class CreateUsersgroupTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usersgroup');
+        Schema::dropIfExists('usersgroups');
     }
 }

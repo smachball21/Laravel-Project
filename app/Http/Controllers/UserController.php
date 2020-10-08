@@ -13,7 +13,8 @@ class UserController extends Controller
 {
     public function getgroup()
     {
-        $getGroup =  DB::table('usersgroup')->where('userID',Auth::id())->join('groups', 'usersgroup.groupID', '=', 'groups.id')->value('groupName');
-        return view('template',['group' => $getGroup]);
+        //$getGroup =  DB::table('usersgroup')->where('userID',Auth::id())->join('groups', 'usersgroup.groupID', '=', 'groups.id')->value('groupName');
+        $getGroup = usergroups::id();
+        return view('test',['group' => $getGroup]);
     }   
 }
