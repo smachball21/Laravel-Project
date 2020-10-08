@@ -30,7 +30,7 @@ class UserController extends Controller
             $getGroup = $user->usersgroups->groups->groupName;
             
             // ON RETURN LA VIEW AVEC VARIABLE
-            return view('test',['group' => $getGroup]);
+            return view('template',['group' => $getGroup]);
         }else{
             // ON RETURN LA VIEW SANS VARIABLE
             return view('template');
