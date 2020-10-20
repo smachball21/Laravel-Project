@@ -21,9 +21,7 @@ Auth::routes();
 Route::get('/',[UserController::class, 'getgroupandaccueil']);
 
 
-Route::get('panel/', function (){
-    return view('panel');
-});
+Route::get('panel/', [UserController::class, 'getgrouppanel']);
 
 
 Route::get('features/', [UserController::class, 'getgroupfeature']);
